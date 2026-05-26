@@ -111,11 +111,28 @@ public class FpsMovement : MonoBehaviour
         //    Vector3.up,
         //    standingHeight - _characterController.center.z
         //    );
+        //return !Physics.CapsuleCast(
+        //        transform.position + _characterController.center, 
+        //        transform.position + (Vector3.up * _characterController.height / 2),
+        //        _characterController.radius,
+        //        Vector3.up
+        //    );
+
+        float radius = _characterController.radius;
+        float castDistance = standingHeight - _characterController.height; 
+
+        Vector3 bottom = transform.position + _characterController.center + Vector3.down * (_characterController.height / 2f - radius);
+
+        Vector3 top = transform.position + _characterController.center + Vector3.up * (_characterController.height / 2f - radius);
+
         return !Physics.CapsuleCast(
-                transform.position + _characterController.center, 
-                transform.position + (Vector3.up * _characterController.height / 2),
-                _characterController.radius,
-                Vector3.up
+            bottom,
+            top,
+            radius,
+            Vector3.up,
+            castDistance,
+            ~0,
+            QueryTriggerInteraction.Ignore
             );
     }
 
@@ -140,8 +157,6 @@ public class FpsMovement : MonoBehaviour
         var currentSpeed = _isCrouching ? crouchSpeed : _isRunning ? runSpeed : walkSpeed; 
         var finalMove = move * currentSpeed;
         finalMove.y = _verticalVelocity; 
-
-        _characterController.Move(finalMove * Time.deltaTime);
 
         var collisions = _characterController.Move(finalMove * Time.deltaTime);
 
