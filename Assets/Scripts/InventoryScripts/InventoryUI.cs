@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+using System.Collections.Generic;
+using UnityEngine.EventSystems; 
+
+
 public class InventoryUI : MonoBehaviour
 {
     [Header("Input")]
@@ -61,6 +65,10 @@ public class InventoryUI : MonoBehaviour
             playerMovement.enabled = false;
             interactor.enabled = false;
             cameraInputController.enabled = false;
+
+            Debug.Log("Inventory open: " + isInventoryOpen);
+            Debug.Log("Cursor visible: " + Cursor.visible);
+            Debug.Log("Cursor lock state: " + Cursor.lockState);
         }
         else
         {
@@ -91,15 +99,46 @@ public class InventoryUI : MonoBehaviour
                 buttonText.text = note.title;
             }
 
-            button.onClick.AddListener(() => InspectNote(note));
+            Debug.Log("Created button for note: " + note.title);
+
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
+            {
+                Debug.Log("Button Clicked for note: " + note.title);
+                InspectNote(note);
+            });
         }
     }
 
     private void InspectNote(NoteData note)
     {
+        Debug.Log("Clicked note: " + note.title); 
+
         inspectionPanel.SetActive(true);
         noteTitleText.text = note.title; 
         noteBodyText.text = note.bodyText;
+    }
+
+    private void Update()
+    {
+        if (!isInventoryOpen) return; 
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
+
+            pointerData.position = Mouse.current.position.ReadValue();
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            Debug.Log("UI objects under mouse: ");
+
+            foreach (RaycastResult result in results)
+            {
+                Debug.Log(result.gameObject.name); 
+            }
+        }
     }
 
 }
