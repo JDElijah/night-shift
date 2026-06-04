@@ -11,6 +11,9 @@ public class SequencePuzzleManager : MonoBehaviour
     [Header("Timing")]
     [SerializeField] private float resetDelay = 1.5f;
 
+    [Header("Completion")]
+    [SerializeField] private ElevatorExit elevatorExit; 
+
     private readonly List<string> _playerSequence = new();
     private bool _isCheckingSequence;
     private bool _puzzleSolved; 
@@ -65,6 +68,17 @@ public class SequencePuzzleManager : MonoBehaviour
             sequenceSwitch.SetSuccess();
         }
         Debug.Log("Correct sequence! Puzzle Solved.");
+
+        if (elevatorExit != null)
+        {
+            elevatorExit.Unlock();
+        }
+        else
+        {
+            Debug.LogWarning("No ElevatorExit assigned to SequencePuzzleManager.");
+        }
+
+        Debug.Log("Correct sequence! Puzzle solved."); 
     }
 
     private IEnumerator HandleFailure()
