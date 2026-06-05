@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c7b6fe3848a14aaeb180b7e1d0f06, type: 3}
   m_Name: Note1
   m_EditorClassIdentifier: Assembly-CSharp::NoteData
-  title: Wake Up
-  bodyText: 'You don''t remember falling asleep. The monitor is stil on, but the
-    clock is wrong.  '
+  title: One Voice
+  bodyText: 'Once, every mouth made the same shape
+
+    Every name fit inside every
+    ear.
+
+
+    They mistook this for unity.
+
+
+    But a single voice is easy to hear
+    from far away.'

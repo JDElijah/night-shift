@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c7b6fe3848a14aaeb180b7e1d0f06, type: 3}
   m_Name: Note5
   m_EditorClassIdentifier: Assembly-CSharp::NoteData
-  title: Note5 Title
-  bodyText: Note5 Body
+  title: The Ruin
+  bodyText: "By morning, no word returned whole.\n\nBrother became noise. \nHome
+    because teeth.\nGod became a door left open.\n\nThe tower still stands somewhere.\n\nIt
+    is waiting for one voice again."

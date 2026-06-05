@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c7b6fe3848a14aaeb180b7e1d0f06, type: 3}
   m_Name: Note2
   m_EditorClassIdentifier: Assembly-CSharp::NoteData
-  title: Clock In
-  bodyText: You punch in. You notice there's nobody here.
+  title: The Foundation
+  bodyText: 'They pressed words into brick.
+
+    Name. Law. Heaven. Forever
+
+
+    The
+    tower rose on language, not stone.
+
+
+    Beneath it, something listened through
+    the ground.'
